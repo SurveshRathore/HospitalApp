@@ -1,0 +1,66 @@
+/* *{
+    background: rgb(132, 185, 201);
+} */
+
+.appointmentPage{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.pageContent{
+    display: 'flex';
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    width: 55%;
+}
+
+.appointmentContent{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.selectDate{
+    display: 'flex';
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 15%;
+    width: 80%;
+}
+
+.selectdisease{
+    display: 'flex';
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 20%;
+    width: 80%;
+}
+
+.labelTex{
+    display: 'flex';
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    height: 35%;
+    width: 80%;
+    left: 0;
+}
+
+.appointmentButton{
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 15%;
+    width: 80%;
+}
