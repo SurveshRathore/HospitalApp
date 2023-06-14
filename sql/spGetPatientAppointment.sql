@@ -1,7 +1,6 @@
-create procedure spGetDoctorAppointment
+create procedure spGetPatientAppointment
 (
-	@doctorId int
-	
+	@PatientId int
 )
 AS
 SET XACT_ABORT on;
@@ -9,21 +8,20 @@ BEGIN
 	Begin Try
 		Begin Transaction
 			Declare @Result varchar(255) = '';
-				if exists (select * from DoctorTable where doctorId = @doctorId)
+				if exists (select * from PatientTable where PatientId = @PatientId)
 				BEGIN
 
-					select * from AppointmentTable where doctorId = @doctorId
-					Set @Result = 'doctor Appointment list fetch successfully';
+					select * from AppointmentTable where PatientId = @PatientId
+					Set @Result = 'Patient Appointment list fetch successfully';
 				END
 				else
 				begin
-					Set @Result = 'Doctor Id not Exists';
-					THROW 52000, 'Doctor Id not Exists', -1;
+					Set @Result = 'Patient Id not Exists';
+					THROW 52000, 'Patient Id not Exists', -1;
 				end
 
 
-					
-
+				
 			commit Transaction
 
 			return @Result
@@ -51,10 +49,6 @@ BEGIN
 	End Catch
 END
 
-exec spGetDoctorAppointment
+exec spGetPatientAppointment
 
-	@doctorId  = 1
-
-	--drop proc spAddDoctor
-
-	
+	@PatientId  = 1

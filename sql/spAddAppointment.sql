@@ -1,19 +1,10 @@
-use hospitalCare
 
-create table AppointmentTable
+create procedure spAddAppointment
 (
-	AppointmentId int primary key identity(1,1),
-	AppointmentDate DateTime,
-	AppointmentType varchar(255),
-	AppointmentDescription varchar(255),
-	AppointmentStatus varchar(255) default 'Pending',
-	PatientId int foreign key references PatientTable(PatientId),
-	doctorId int foreign key references DoctorTable(doctorId)
-)
-create procedure spScheduleAppointment
-(
-	@AppointmentDate DateTime,
-	@AppointmentType varchar(255),
+	@AppointmentDate Date,
+	@AppointmentStartTime time,
+	@AppointmentEndTime time,
+	@AppointmentDisease varchar(255),
 	@AppointmentDescription varchar(255),
 	@PatientId varchar(255),
 	@doctorId varchar(255)
@@ -28,12 +19,12 @@ BEGIN
 				BEGIN
 					if exists (select * from PatientTable where PatientId = @PatientId)
 						begin
-							insert into AppointmentTable (AppointmentDate, AppointmentType, AppointmentDescription, PatientId, doctorId) 
-							values (@AppointmentDate, @AppointmentType, @AppointmentDescription, @PatientId, @doctorId)
+							insert into AppointmentNewTable (AppointmentDate, AppointmentStartTime, AppointmentEndTime,	AppointmentDisease, AppointmentDescription, PatientId, doctorId) 
+							values (@AppointmentDate, @AppointmentStartTime, @AppointmentEndTime, @AppointmentDisease, @AppointmentDescription, @PatientId, @doctorId)
 
-							select * from DoctorTable
+							select * from AppointmentNewTable
 
-							Set @Result = 'doctor details inserted successfully';
+							Set @Result = 'Appointment scheduled successfully';
 						
 						end
 					else
@@ -75,13 +66,6 @@ BEGIN
 		--print 'Unable to Add doctor'
 	End Catch
 END
+GO
 
-exec spScheduleAppointment
 
-	@AppointmentDate = '28 april 2023 01 PM',
-	@AppointmentType = 'abc',
-	@AppointmentDescription = 'desc',
-	@PatientId = 1,
-	@doctorId = 1
-
-	--drop proc spAddDoctor

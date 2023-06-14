@@ -69,3 +69,13 @@ exec spAddDoctor
 	@DoctorQualification = 'MD'
 
 	--drop proc spAddDoctor
+
+exec spAddDoctor
+
+	@DoctorFirstName = 'doctor6',
+	@DoctorLastName = 'doctor last name',
+	@DoctorGender = 'Male',
+	@DoctorEmail = 'doctor6@gmail.com',
+	@DoctorContactNumber = '9876543210',
+	@DoctorSpecialization = 'Allergist',
+	@DoctorQualification = 'MD'
